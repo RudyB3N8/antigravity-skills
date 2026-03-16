@@ -7,6 +7,7 @@ Ce dépôt sert à stocker, versionner et partager les différentes compétences
 ## 🚀 Compétences disponibles
 
 *   **[Créateur de compétences (`createur-de-competences`)](./createur-de-competences/SKILL.md)** : Une compétence globale (méta-compétence) conçue pour aider Antigravity à concevoir, structurer et générer de nouvelles compétences de manière claire, cohérente et en respectant strictement les bonnes pratiques officielles de la documentation.
+*   **[UI/UX Pro Max (`ui-ux-pro-max`)](./ui-ux-pro-max/SKILL.md)** : Génère des systèmes de design intelligents et recommande des styles UI, palettes de couleurs et typographies adaptés à chaque projet.
 
 ## 🛠️ Structure d'une compétence
 
