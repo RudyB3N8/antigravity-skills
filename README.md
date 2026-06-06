@@ -10,6 +10,7 @@ Ce dépôt sert à stocker, versionner et partager les différentes compétences
 *   **[UI/UX Pro Max (`ui-ux-pro-max`)](./ui-ux-pro-max/SKILL.md)** : Génère des systèmes de design intelligents et recommande des styles UI, palettes de couleurs et typographies adaptés à chaque projet.
 *   **[Brainstorming (`brainstorming`)](./brainstorming/SKILL.md)** : À utiliser obligatoirement AVANT tout travail créatif. Permet d'explorer l'intention de l'utilisateur, les exigences et le design avant l'implémentation. Inclut un assistant visuel sur navigateur Web.
 *   **[Planification (`planification`)](./planification/SKILL.md)** : À utiliser lorsque tu disposes d'une spécification pour une tâche complexe en plusieurs étapes, AVANT de toucher au moindre code. Permet la rédaction étape par étape (TDD, petites tâches).
+*   **[Assistant Aura.build (`aura-build-assistant`)](./aura-build-assistant/SKILL.md)** : Assiste l'utilisateur dans la conception de prompts optimisés pour l'IA d'Aura.build et dans l'importation propre du code généré (HTML, Tailwind CSS, JS) dans un dossier de staging local, avec option d'extraction SCSS.
 
 ## 🛠️ Structure d'une compétence
 
