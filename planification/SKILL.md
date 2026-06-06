@@ -1,131 +1,118 @@
 ---
 name: planification
-description: "À utiliser lorsque tu disposes d'une spécification ou des exigences pour une tâche complexe en plusieurs étapes, AVANT de toucher au moindre code ou fichier."
+description: "Conçoit un plan d'implémentation détaillé pour une tâche complexe en plusieurs étapes, en générant les artefacts natifs d'Antigravity 2.0 (implementation_plan.md, task.md) avant d'écrire ou de modifier du code."
 ---
 
 # Écriture de Plans ("Planification")
 
 ## Vue d'ensemble
 
-Rédige des plans d'implémentation exhaustifs en partant du principe que le développeur qui exécutera le plan n'a absolument **aucun contexte** de la base de code, ni un bon "flair" naturel. Tu dois absolument tout documenter pour lui de manière granulaire et méthodique : quels fichiers toucher pour chaque tâche exacte, quel code écrire, quels tests, comment vérifier que cela fonctionne, quelle documentation lire.
+Rédige des plans d'implémentation exhaustifs en partant du principe que le développeur qui exécutera le plan n'a aucun contexte préalable de la base de code. Tu dois absolument tout documenter pour lui de manière granulaire et méthodique : quels fichiers toucher pour chaque tâche exacte, quel code écrire, quelles commandes de test lancer, comment vérifier que cela fonctionne.
 
-Sers-lui le plan complet découpé en toutes petites tâches (Bite-Sized Tasks).
-Pratiques à imposer : DRY (Don't Repeat Yourself), YAGNI (You Aren't Gonna Need It), TDD (Test Driven Development) et Commits fréquents.
-Assume qu'il est un développeur chevronné mais qu'il ne sait rien de notre conception de tests, de notre domaine d'application ou de nos bibliothèques.
+Le plan d'implémentation sous Antigravity 2.0 s'appuie sur la génération et la gestion des artefacts de planification natifs situés dans le répertoire de la conversation :
+1. `<appDataDir>/brain/<conversation-id>/implementation_plan.md` : Document d'architecture et de conception globale soumis à validation.
+2. `<appDataDir>/brain/<conversation-id>/task.md` : Liste de tâches (TODO) granulaires pour suivre la progression de l'implémentation.
+3. `<appDataDir>/brain/<conversation-id>/walkthrough.md` : Document de synthèse récapitulant les changements effectués et les validations après exécution.
 
-**Annonce de démarrage :** "J'utilise la compétence de `planification` pour créer le plan d'implémentation."
+Pratiques de développement à imposer dans tout plan :
+- **DRY (Don't Repeat Yourself)** : Pas de duplication inutile.
+- **YAGNI (You Aren't Gonna Need It)** : Ne pas coder de fonctionnalités superflues ou non demandées.
+- **TDD (Test Driven Development)** : Écrire d'abord le test unitaire ou d'intégration, vérifier son échec, implémenter le minimum de code requis pour le faire passer au vert, puis committer.
+- **Commits fréquents et granulaires** : Committer après chaque sous-étape validée.
 
-**Où sauvegarder :** Les plans doivent être sauvegardés dans `docs/superpowers/plans/AAAA-MM-JJ-<nom-fonctionnalite>.md`
-- (Sauf indication contraire et préférences explicites de l'utilisateur).
-
-## Vérification du périmètre (Scope Check)
-
-Si la spécification initiale couvre plusieurs sous-systèmes indépendants et énormes, le Brainstorming aurait dû les séparer. Si ce n'est pas le cas, propose ici de diviser la demande en **plusieurs plans distincts** — un par sous-système. Chaque plan doit aboutir à un composant logiciel fonctionnel et testable par lui-même, pas la moitié d'un tout inutilisable.
-
-## Structure de fichiers (Verrouillage)
-
-Avant de lister les tâches, indique d'abord quels fichiers seront créés ou modifiés et quelle sera la responsabilité de chacun. C'est ici que l'architecture et la décomposition se figent.
-
-- Conçois des unités avec des frontières claires et des interfaces définies. Chaque fichier doit répondre d'une **seule** responsabilité.
-- Privilégie les petits fichiers précis plutôt que les énormes monstres inmaintenables. Il vaut mieux de petites unités.
-- Les fichiers modifiés conjointement doivent habiter ensemble, par fonctionnalité et non par calque technique pur si possible.
-- Sur du code existant, respecte les normes en place, mais propose une cassure (refactor par extraction) si le fichier devient horriblement long.
-
-## Granularité des Tâches (Bite-Sized Tasks)
-
-**Chaque étape est UNE action (2 à 5 minutes humaines / 1 prompt IA) :**
-- "Écrire le test unitaire qui échoue" - étape 1
-- "Lancer le test pour voir qu'il échoue (TDD)" - étape 2
-- "Écrire l'implémentation minimale requise pour faire passer ce test" - étape 3
-- "Relancer le/les tests pour vérifier le vert" - étape 4
-- "Committer" - étape 5
-
-## En-tête du Plan (Header obligatoire)
-
-**CHAQUE plan DOIT obligatoirement commencer par cet en-tête exact :**
-
-```markdown
-# Plan d'Implémentation : [Nom de la fonctionnalité]
-
-> **Pour l'Exécuteur :** REQUIS : Utilisez des listes de cases à cocher (`- [ ]`) pour valider les étapes sans brûler les étapes.
-
-**Objectif :** [Une seule phrase qui décrit le but de cette construction]
-
-**Architecture :** [2 ou 3 phrases sur l'approche technique exacte choisie]
-
-**Stack / Technos :** [Librairies et/ou conventions à utiliser impérativement]
+**Annonce de démarrage :**
+> "J'utilise la compétence de `planification` pour initialiser le plan d'implémentation natif d'Antigravity 2.0."
 
 ---
+
+## 1. Vérification du périmètre (Scope Check)
+
+Si la demande initiale couvre plusieurs sous-systèmes indépendants et massifs, propose de diviser le travail en plusieurs plans distincts (un plan par sous-système). Chaque plan doit aboutir à un composant logiciel fonctionnel et testable individuellement.
+
+---
+
+## 2. Structure et rédaction de `implementation_plan.md`
+
+Crée le fichier `<appDataDir>/brain/<conversation-id>/implementation_plan.md` en utilisant obligatoirement le format d'artefact natif suivant :
+
+```markdown
+# [Description globale de l'Objectif]
+
+[Description textuelle claire du problème, contexte et de ce que la modification va accomplir]
+
+## User Review Required
+
+[Décisions d'architecture critiques, dépendances à introduire, ou changements cassants qui nécessitent l'attention de l'utilisateur. Utiliser des alertes GitHub de type > [!IMPORTANT], > [!WARNING] ou > [!CAUTION]]
+
+## Open Questions
+
+[Questions en suspens influençant la conception ou l'implémentation. Utiliser des alertes GitHub pour les points bloquants]
+
+## Proposed Changes
+
+[Grouper les fichiers à modifier par composant (package, zone fonctionnelle) et séparer les composants par des lignes de séparation `---`. Utiliser la scheme `file:///` pour rendre tous les liens vers les fichiers cliquables dans l'IDE]
+
+### [Nom du Composant]
+
+#### [NEW / MODIFY / DELETE] [nom_du_fichier](file:///chemin/absolu/vers/fichier)
+[Résumé précis et détaillé des modifications qui seront apportées à ce fichier]
+
+## Verification Plan
+
+### Automated Tests
+- Commandes exactes pour exécuter les tests automatisés (ex: `pytest tests/path/test_file.py`, `npm run test`, etc.)
+
+### Manual Verification
+- Instructions détaillées pour que l'utilisateur ou l'agent vérifie manuellement le comportement (ex: déploiement en local, navigation sur une page spécifique, saisie de données de test, etc.)
 ```
 
-## Structure d'une Tâche
+---
 
-````markdown
-### Tâche N : [Nom du composant cible]
+## 3. Décomposition des tâches dans `task.md`
 
-**Fichiers impactés :**
-- Création : `chemin/exact/vers/fichier.py`
-- Modification : `chemin/exact/existant.js:123-145`
-- Test : `tests/chemin/exact/vers/test.py`
+Crée le fichier de suivi `<appDataDir>/brain/<conversation-id>/task.md` avec une liste de tâches élémentaires (représentant chacune 2 à 5 minutes de développement pour un humain ou un prompt pour un agent).
+Utilise la syntaxe standard :
+- `- [ ]` pour les tâches non commencées
+- `- [/]` pour les tâches en cours
+- `- [x]` pour les tâches terminées
 
-- [ ] **Étape 1 : Écrire le test qui doit échouer**
+### Modèle de tâche TDD
+Pour chaque tâche impliquant l'écriture ou la modification de logique de code, structure-la de la manière suivante dans `task.md` :
 
-```python
-def test_specific_behavior():
-    result = function(input)
-    assert result == expected
+```markdown
+- [ ] Tâche N : [Nom du composant cible]
+  - Fichiers impactés : [chemin_fichier](file:///chemin/absolu)
+  - [ ] Étape 1 : Écrire le test unitaire/intégration qui doit échouer
+  - [ ] Étape 2 : Lancer le test pour valider l'échec (Commande : `...` -> Sortie attendue : `...`)
+  - [ ] Étape 3 : Écrire l'implémentation minimale requise pour faire passer le test
+  - [ ] Étape 4 : Relancer le test pour valider le succès (Commande : `...` -> Sortie attendue : `...`)
+  - [ ] Étape 5 : Effectuer le commit Git (`git commit -m "..."`)
 ```
 
-- [ ] **Étape 2 : Lancer le test pour validation d'échec**
+---
 
-Action : `pytest tests/path/test.py::test_name -v`
-Résultat attendu : ÉCHEC "function not defined"
+## 4. Choix de l'approche et boucle de révision
 
-- [ ] **Étape 3 : Écrire l'implémentation minimale**
+Avant de soumettre le plan finalisé à la validation de l'utilisateur, tu DOIS lui demander s'il souhaite activer la vérification automatisée par un sous-agent IA :
 
-```python
-def function(input):
-    return expected
-```
+1. **Poser la question :**
+   > "Souhaitez-vous activer la révision automatisée du plan par un sous-agent IA ? (Par défaut, le plan sera soumis directement à votre validation humaine)."
+   
+2. **Si l'utilisateur accepte la révision automatisée :**
+   - Délègue la vérification de `implementation_plan.md` et `task.md` à un sous-agent de relecture en lui passant le prompt défini dans [plan-document-reviewer-prompt.md](file:///home/rudybn/.gemini/config/skills/planification/resources/plan-document-reviewer-prompt.md).
+   - Si le sous-agent retourne des problèmes (❌), corrige-les directement dans les fichiers d'artefacts puis relance l'évaluation jusqu'à obtenir la mention "✅ Validé".
+   - Limite : Ne dépasse pas 5 boucles d'erreurs enchaînées avant de demander de l'aide à l'humain.
+   
+3. **Si l'utilisateur refuse ou par défaut (validation directe) :**
+   - Présente le plan en activant l'attribut `request_feedback = true` dans les métadonnées de l'artefact `implementation_plan.md` pour déclencher le processus natif de validation d'Antigravity 2.0.
 
-- [ ] **Étape 4 : Lancer le test pour validation du succès**
+---
 
-Action : `pytest tests/path/test.py::test_name -v`
-Résultat attendu : SUCCÈS (PASS)
+## 5. Transition vers l'exécution
 
-- [ ] **Étape 5 : Effectuer le Commit**
-
-```bash
-git add tests/path/test.py src/path/fichier.py
-git commit -m "feat: ajout de la fonctionnalité specifique"
-```
-````
-
-## Mémos obligatoires
-- Spécifie systématiquement les **chemins exacts et absolus/relatifs pertinents**.
-- Rédige le code COMPLET nécessaire de l'étape dans le plan (Évite le "Ajoute une validation ici").
-- Donne les commandes exactes de terminal pour valider (avec le retour shell attendu).
-- N'oublie pas : DRY, YAGNI, TDD, Commits rapides.
-
-## Boucle de révision du plan (Examen)
-
-Après avoir rédigé chaque grand bloc ou bloc complet (Chunk) de plan :
-
-1. Délègue le sous-agent de vérification du plan fourni dans `resources/plan-document-reviewer-prompt.md`. Fixe bien le contexte du document de base et de ton plan, pas ton esprit de fonctionnement (session data).
-   - Fournir : Contenu du Chunk et chemin vers la Spec validée en amont.
-2. S'il y a des ❌ "Problèmes Constatés" :
-   - Corrige les soucis directement dans ce chunk spécifique.
-   - Relance le délégataire d'examen sur le même bloc.
-   - Boucle jusqu'à "✅ Validé".
-3. Si c'est "✅ Validé" : Passe à la rédaction du chunk suivant, ou finalise si c'était le dernier.
-
-**Limites de "Chunk" :** Un bloc (`## Chunk N`) ne doit jamais faire plus de 1000 lignes.
-**Guide de révision :** L'agent qui écrit est celui qui corrige. Au bout de 5 boucles d'erreurs enchaînées ou de désaccords de l'expert, demande de l'aide à l'humain. Sois capable d'expliquer pourquoi tu ignores un faux positif s'il te l'impose.
-
-## Transition / Fin (Prêt à l'exécution)
-
-Après la sauvegarde confirmée du document de plan parfait :
-
-**"Le plan d'implémentation est achevé, vérifié et sauvegardé au chemin `docs/superpowers/plans/<filename>.md`. Êtes-vous prêt pour l'exécution ?"**
-
-L'utilisateur devra prendre le relais avec la compétence appropriée ou te donner le feu vert pour entrer en Phase d'Éxécution de Plan (`EXECUTION`) avec son accord implicite.
+Une fois le plan d'implémentation validé par l'utilisateur (humainement ou après révision IA) :
+- Initialise la phase d'exécution.
+- Indique à l'utilisateur :
+  > "Le plan d'implémentation est approuvé. Je démarre l'exécution des tâches détaillées dans `task.md`."
+- Mets à jour rigoureusement `task.md` au fil de tes modifications (en passant les statuts à `[/]` puis `[x]`).
+- Rédige et mets à jour `walkthrough.md` une fois l'implémentation achevée pour consigner les résultats des validations.
