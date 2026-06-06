@@ -25,18 +25,18 @@ Tu DOIS créer une tâche (`task.md`) comportant chacun des points suivants et l
 3. **Poser des questions de clarification** — une question à la fois, pour comprendre l'objectif, les contraintes et les critères de succès.
 4. **Proposer 2 à 3 approches possibles** — avec leurs avantages, inconvénients (trade-offs) et ta propre recommandation.
 5. **Présenter le design finalisé** — section par section selon la complexité ; obtiens l'approbation de l'utilisateur après chaque section.
-6. **[Optionnel] Rédiger le document de conception (Spec)** — Demande à l'utilisateur si une spécification écrite détaillée est nécessaire. Si oui, sauvegarde sous `docs/superpowers/specs/AAAA-MM-JJ-<sujet>-design.md` et commit.
-7. **[Optionnel] Boucle de révision de la spécification** — (Applicable uniquement si un document a été créé) délègue un sous-agent de révision avec un contexte précis (jamais tout ton historique de session) ; corrige les problèmes remontés et boucle (max 5 fois, au-delà, demande l'intervention humaine). Utilise les directives fournies dans `resources/spec-document-reviewer-prompt.md`.
+6. **[Optionnel] Rédiger le document de conception (Spec)** — Demande à l'utilisateur si une spécification écrite détaillée é nécessaire. Si oui, sauvegarde sous `docs/superpowers/specs/AAAA-MM-JJ-<sujet>-design.md` et commit.
+7. **[Optionnel] Boucle de révision de la spécification** — (Applicable uniquement si un document a été créé) délègue un sous-agent de révision avec un contexte précis (jamais tout ton historique de session) ; corrige les problèmes remontés et boucle (max 5 fois, au-delà, demande l'intervention humaine). Utilise les directives fournies dans [spec-document-reviewer-prompt.md](./resources/spec-document-reviewer-prompt.md).
 8. **[Optionnel] Révision humaine** — (Applicable uniquement si un document a été créé) demande à l'utilisateur de valider le fichier de spécification écrit avant de passer à l'étape finale.
-9. **[Optionnel] Transition vers la planification détaillée** — Demande à l'utilisateur s'il souhaite utiliser la compétence formelle `planification` (qui génère un fichier de plan exhaustif), s'il préfère utiliser le mode "Planning" intégré de l'interface (générant un artefact `implementation_plan.md`), ou s'il souhaite lancer l'implémentation directement. Agis selon son choix.
+9. **[Optionnel] Transition vers la planification détaillée** — Si le design est validé et que la mise en œuvre de la solution est complexe, bascule en mode de Planification pour initialiser les artefacts natifs d'Antigravity 2.0 (`implementation_plan.md` et `task.md`) dans le dossier de la conversation (`<appDataDir>/brain/<conversation-id>/`).
 
 ## Arbre de Décision Global
 
 - **SI** la demande décrit plusieurs sous-systèmes indépendants (ex: "un site e-commerce avec chat, stockage web, paiement direct et analytique") : **ALORS** arrête immédiatement et aide l'utilisateur à découper ce vaste objectif en plusieurs sous-projets indépendants. Réalisez un brainstorming focalisé sur le PREMIER sous-projet.
-- **SI** la demande évoque des options visuelles (UI, maquettes, schémas) : **ALORS** tu dois demander à l'utilisateur s'il accepte d'utiliser l'outil `Visual Companion` (une demande seule, attendre sa réponse). Voir le guide complet dans `resources/visual-companion.md`.
+- **SI** la demande évoque des options visuelles (UI, maquettes, schémas) : **ALORS** tu dois demander à l'utilisateur s'il accepte d'utiliser l'outil `Visual Companion` (une demande seule, attendre sa réponse). Voir le guide complet dans [visual-companion.md](./resources/visual-companion.md).
 - **SI** l'utilisateur a approuvé l'approche finale : **ALORS** demande si un document de conception (Spec) formel doit être rédigé. Si oui, rédige la Spécification et lance la boucle de révision. Sinon, considère le design comme validé.
 - **SI** l'utilisateur rejette une idée : **ALORS** demande plus de contexte, propose d'autres alternatives.
-- **SI** le design est validé (avec ou sans fichier de spec) : **ALORS** demande à l'utilisateur comment il souhaite planifier la suite (via la compétence `planification`, via le mode Planning de l'interface, ou s'y attaquer directement).
+- **SI** le design est validé (avec ou sans fichier de spec) : **ALORS** bascule en mode de Planification pour générer l'architecture dans l'artefact natif `implementation_plan.md` et la liste de tâches dans `task.md` sous le répertoire `<appDataDir>/brain/<conversation-id>/`.
 
 ## Bonnes Pratiques
 
@@ -67,4 +67,4 @@ Cet outil (un serveur de rendu Web) aide pour tous les cas de figure nécessitan
 > "Une partie de ce que nous concevons pourrait être plus simple à comprendre si je vous le montre dans un navigateur web. Je peux vous créer des maquettes et des diagrammes à la volée. Voulez-vous utiliser ce système ? (Cela demandera d'ouvrir une URL locale)"
 
 **ATTENTION :** Ce message DOIT être posé SEUL. Ne le combine pas avec des descriptions ou d'autres questions. Attends l'accord. Si l’utilisateur refuse, reste dans le terminal.
-Lis attentivement le manuel `resources/visual-companion.md` avant de lancer ou manipuler le serveur.
+Lis attentivement le manuel [visual-companion.md](./resources/visual-companion.md) avant de lancer ou manipuler le serveur.

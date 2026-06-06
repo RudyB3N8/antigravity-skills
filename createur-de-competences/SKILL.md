@@ -19,6 +19,7 @@ Une compétence est un package de connaissances pour étendre les capacités d'u
 - `README.md` (Optionnel) : Une documentation destinée aux lecteurs humains pour expliquer le but de la compétence.
 - `scripts/` (Optionnel) : Un sous-dossier contenant des scripts exécutables (ex: Python, Bash) que l'agent pourra lancer via ses outils.
 - `resources/` (Optionnel) : Un sous-dossier contenant des données de support (templates, schémas JSON, documentations complémentaires).
+- `references/` (Optionnel) : Un sous-dossier contenant de la documentation ou des spécifications statiques de référence que l'agent pourra consulter sans surcharger son contexte immédiat.
 - `examples/` (Optionnel) : Un sous-dossier contenant des implémentations de référence ou des attentes de résultats.
 
 ## 2. Le fichier `SKILL.md` et le Frontmatter
@@ -53,15 +54,17 @@ Ton fichier `SKILL.md` doit inclure les éléments suivants :
 
 - **Focus Unique (Single Responsibility)** : Une compétence doit se concentrer sur **UNE SEULE tâche** ou un domaine très précis. Si le besoin est trop large, crée plusieurs compétences spécialisées au lieu d'une seule compétence fourre-tout.
 - **Clarté et précision** : Sois explicite sur les entrées attendues et les résultats/sorties exacts générés par la compétence.
+- **Formatage des liens** : Pour faire référence à des fichiers ou symboles de code dans la compétence, utilise impérativement le schéma `file:///` pour créer des liens cliquables dans l'IDE, sans entourer le lien markdown de backticks (ex: `[SKILL.md](file:///path/to/SKILL.md)`).
 - **Emplacement de sauvegarde** : 
-  - Compétences Locales (spécifiques à un espace de travail) : `<workspace-root>/.agents/skills/`
-  - Compétences Globales (disponibles pour tous les projets) : `~/.gemini/antigravity/skills/`
+  - Compétences Locales (spécifiques au projet) : `<workspace-root>/.gemini/config/skills/`
+  - Compétences Globales (disponibles pour tous les projets) : `~/.gemini/config/skills/` ou `<appDataDir>/skills/`
   *Si l'utilisateur ne le précise pas, demande au préalable s'il souhaite que la compétence soit locale ou globale.*
 
 ## 5. Workflow de création (Ce que tu dois faire)
 
-Lorsque l'utilisateur te demande de créer une nouvelle compétence :
+Lorsque l'utilisateur te demande de créer ou de modifier une compétence :
 1. Demande confirmation de l'emplacement (Global ou Local) si ambigu.
-2. Crée le répertoire portant le nom de la compétence.
-3. Crée le fichier `SKILL.md` avec le YAML frontmatter exact et rédige les instructions **en français** selon la structure ci-dessus.
-4. Si nécessaire, crée les dossiers optionnels (`scripts`, `resources`, `examples`, `README.md`) pour bien organiser la compétence.
+2. **Planification (si complexe)** : Si la création ou modification implique des scripts ou une logique complexe, utilise la compétence de `planification` pour rédiger et soumettre à validation les artefacts natifs d'Antigravity 2.0 (`implementation_plan.md` et `task.md`) avant de commencer l'écriture.
+3. Crée le répertoire portant le nom de la compétence.
+4. Crée le fichier `SKILL.md` avec le YAML frontmatter exact et rédige les instructions **en français** selon la structure ci-dessus.
+5. Si nécessaire, crée les dossiers optionnels (`scripts`, `resources`, `references`, `examples`, `README.md`) pour bien organiser la compétence.

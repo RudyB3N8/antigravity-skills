@@ -43,8 +43,10 @@ Lorsque l'utilisateur est prêt à intégrer le code d'Aura.build :
 2. Demandez-lui de renommer le fichier avec le nom du composant ou de la page (ex: `pricing.html` ou `hero.zip`) et de le placer dans le dossier `./aura-imports/` à la racine de son espace de travail.
 3. Demandez-lui s'il souhaite que le composant importé conserve le format **Tailwind CSS** natif d'Aura.build ou s'il souhaite extraire les styles en **SCSS classique**.
 4. Exécutez le script d'importation automatique en lançant le script python :
-   `python3 .gemini/config/skills/aura-build-assistant/scripts/import-code.py --file <nom_du_fichier> --mode <tailwind/scss>`
+   `python3 ~/.gemini/config/skills/aura-build-assistant/scripts/import-code.py --file <nom_du_fichier> --mode <tailwind/scss>`
+   *(Le script est accessible ici : [import-code.py](./scripts/import-code.py))*
 5. Montrez à l'utilisateur les fichiers propres générés dans `./aura-imports/output/<nom-du-composant>/` et expliquez-lui comment les intégrer.
+   *Remarque : Si l'intégration du code importé dans le projet principal est complexe (nombreux fichiers modifiés, styles globaux), basculez d'abord en phase de Planification pour rédiger les artefacts de planification natifs (`implementation_plan.md` et `task.md`) avant de faire l'intégration.*
 
 ---
 

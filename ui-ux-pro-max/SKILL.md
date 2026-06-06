@@ -18,19 +18,19 @@ Active cette compétence dès que l'utilisateur te demande de :
 ## Instructions étape par étape
 
 La compétence repose sur un moteur de recherche et de génération écrit en Python. **Tu ne dois pas lire ou analyser le code source Python**. Utilise-le simplement comme un script via ton outil d'exécution de commandes (`run_command`), en appelant le point d'entrée suivant :
-`/home/rudybn/.gemini/antigravity/skills/ui-ux-pro-max/scripts/search.py`
+[search.py](./scripts/search.py)
 
 ### 1. Générer un système de design complet (Recommandé)
 Pour obtenir un système de design complet (Pattern, Style, Couleurs, Typographie) basé sur la demande de l'utilisateur, exécute la commande suivante en adaptant la `<requête>` et le `<nom_projet>` :
 ```bash
-python3 /home/rudybn/.gemini/antigravity/skills/ui-ux-pro-max/scripts/search.py "<requête>" --design-system -p "<nom_projet>" -f markdown
+python3 ~/.gemini/config/skills/ui-ux-pro-max/scripts/search.py "<requête>" --design-system -p "<nom_projet>" -f markdown
 ```
-*Exemple : `python3 /home/rudybn/.gemini/antigravity/skills/ui-ux-pro-max/scripts/search.py "fintech banking" --design-system -p "MaBanque" -f markdown`*
+*Exemple : `python3 ~/.gemini/config/skills/ui-ux-pro-max/scripts/search.py "fintech banking" --design-system -p "MaBanque" -f markdown`*
 
 ### 2. Recherche spécifique par domaine (Optionnel)
 Si l'utilisateur pose une question très précise (ex: uniquement sur la typographie), tu peux chercher dans un domaine ciblé :
 ```bash
-python3 /home/rudybn/.gemini/antigravity/skills/ui-ux-pro-max/scripts/search.py "<requête>" --domain <domaine>
+python3 ~/.gemini/config/skills/ui-ux-pro-max/scripts/search.py "<requête>" --domain <domaine>
 ```
 **Domaines disponibles :**
 - `product` : Recommandations contextuelles selon le type de produit.
@@ -43,7 +43,7 @@ python3 /home/rudybn/.gemini/antigravity/skills/ui-ux-pro-max/scripts/search.py 
 
 ### 3. Recherche spécifique par framework/stack (Optionnel)
 ```bash
-python3 /home/rudybn/.gemini/antigravity/skills/ui-ux-pro-max/scripts/search.py "<requête>" --stack <stack>
+python3 ~/.gemini/config/skills/ui-ux-pro-max/scripts/search.py "<requête>" --stack <stack>
 ```
 **Stacks supportées :** `html-tailwind` (par défaut), `react`, `nextjs`, `vue`, `svelte`, `swiftui`, `react-native`, `flutter`, `shadcn`, etc.
 
